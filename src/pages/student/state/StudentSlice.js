@@ -10,14 +10,14 @@ const studentSlice = createSlice({
   initialState: studentInitialState,
   reducers: {
     addAgeAction: (state, action) => {
-      return Object.assign({}, state, {
-        age: state.age + 1
-      })
+      const { age } = state;
+      return {
+        ...state,
+        age: age + 1,
+      };
     },
-    changeNameAction: (state, action) => {
-      return Object.assign({}, state, {
-        name: action.payload.name
-      })
+    changeNameAction: (state, { payload }) => {
+      return { ...state, name: payload.name };
     }
   }
 })
