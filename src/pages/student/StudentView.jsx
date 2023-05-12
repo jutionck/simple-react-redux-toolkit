@@ -40,12 +40,21 @@ class StudentView extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  addAgeAction,
-  changeNameAction
-}
-const mapStateToProps = state => {
-  return {student: state.studentReducer};
+const mapStateToProps = (state) => {
+  return { student: state.studentReducer };
 };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeNameAction: (name) => dispatch(changeNameAction(name)),
+    addAgeAction: () => dispatch(addAgeAction()),
+  };
+};
+
+// atau pake cara ini juga bisa
+// const mapDispatchToProps = {
+//   addAgeAction,
+//   changeNameAction
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentView);
