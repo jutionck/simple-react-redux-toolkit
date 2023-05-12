@@ -9,15 +9,11 @@ const studentSlice = createSlice({
   name: 'student',
   initialState: studentInitialState,
   reducers: {
-    addAgeAction: (state, action) => {
-      const { age } = state;
-      return {
-        ...state,
-        age: age + 1,
-      };
+    addAgeAction: state => {
+      state.age += 1;
     },
-    changeNameAction: (state, { payload }) => {
-      return { ...state, name: payload.name };
+    changeNameAction: (state, action) => {
+      state.name = action.payload.name;
     }
   }
 })
