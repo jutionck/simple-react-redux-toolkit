@@ -5,27 +5,36 @@ import {connect} from "react-redux";
 class StudentView extends Component {
   constructor(props) {
     super(props);
-    this.state = {nameValue: ''}
+    this.state = {
+      name: ''
+    }
   }
 
-  handleNameChange = (event) => this.setState({nameValue: event.target.value});
+  handleNameChange = (event) => this.setState({name: event.target.value});
 
   handleAddAgeClick = () => this.props.addAgeAction();
 
-  handleSubmit = () => this.props.changeNameAction(this.state.nameValue);
+  handleSubmit = () => this.props.changeNameAction({name: this.state.name});
   render() {
     const {student} = this.props
     return (
-      <div className="container">
-        <label>
-          Name:
-          <input type="text" value={this.state.nameValue} onChange={this.handleNameChange}/>
-        </label>
-        <button onClick={this.handleSubmit}>Change Name</button>
-        <div>
-          <button onClick={this.handleAddAgeClick}>Add Age</button>
+      <div className="container mt-5">
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Name"
+            aria-label="Todo"
+            value={this.state.name} onChange={this.handleNameChange}
+          />
+          <button className="btn btn-outline-primary" onClick={this.handleSubmit}>CHANGE NAME</button>
+          <button className="btn btn-outline-warning" onClick={this.handleAddAgeClick} >ADD AGE</button>
+      </div>
+
+        <div className="text-center">
+          <h4>{student.name}</h4>
+          <span className="badge text-bg-light"><h5>{student.age}</h5></span>
         </div>
-        <div>{student.name} {student.age}</div>
       </div>
     );
   }
